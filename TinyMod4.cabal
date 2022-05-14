@@ -1,0 +1,11 @@
+name: TinyMod4
+version: 0.1.0
+license: BSD3
+license-file: LICENSE
+cabal-version: >= 1.18
+build-type: Simple
+
+executable TinyMod4
+    build-depends: base, arduino-copilot
+    main-is: Main.hs
+    default-language: Haskell2010
