@@ -5,7 +5,7 @@
   inputs.flake-utils.url = "github:numtide/flake-utils";
 
   outputs = { self, nixpkgs, flake-utils }:
-    flake-utils.lib.eachDefaultSystem (system: 
+    flake-utils.lib.eachDefaultSystem (system:
       let
         config  = {
           allowBroken = true;
@@ -30,7 +30,7 @@
           };
         };
 
-        pkgs = import nixpkgs { 
+        pkgs = import nixpkgs {
           inherit system;
 
           inherit config;
@@ -41,16 +41,16 @@
             (final: prev: { gforth  = final.callPackage ./gforth.nix {}; })
           ];
         };
-        
+
       in {
-        devShell = pkgs.haskellPackages.shellFor { 
-          packages = hp: [             
+        devShell = pkgs.haskellPackages.shellFor {
+          packages = hp: [
             (pkgs.haskellPackages.callCabal2nix "TinyMod4" ./. {})
           ];
-          build-inputs = [
+          buildInputs = [
             pkgs.cabal-install
- 
-            pkgs.arduino 
+
+            pkgs.arduino
             pkgs.gforth
           ];
         };
